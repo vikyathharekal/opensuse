@@ -1,0 +1,27 @@
+{
+  "name": "openSUSE Development Container",
+  "image": "opensuse/leap:latest",
+  "features": {
+    "docker-in-docker": "latest"
+  },
+  "postCreateCommand": "zypper install -y git vim && zypper clean --all",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+    "ms-vscode.cpptools",          // C/C++ Development
+    "ms-azuretools.vscode-docker",  // Docker support
+    "redhat.vscode-yaml",           // YAML Support
+    "hashicorp.terraform",          // Terraform support
+    "golang.go"                     // Go language support
+  ],
+  "remoteUser": "root",
+  "forwardPorts": [8080, 3000],
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+  "workspaceFolder": "/workspace",
+  "containerEnv": {
+    "ENV_VAR": "value"
+  }
+}
